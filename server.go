@@ -8,8 +8,14 @@ import (
 
 func main() {
 	e := echo.New()
+
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, World!")
 	})
-	e.Logger.Fatal(e.Start(":1323"))
+
+	e.GET("/healthchecks", func(c echo.Context) error {
+		return c.String(http.StatusOK, "Web API Works just fine")
+	})
+
+	e.Logger.Fatal(e.Start(":5000"))
 }
